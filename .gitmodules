@@ -1,0 +1,3 @@
+[submodule "2324-wt/abstract-interpretation/interim/smile"]
+	path = 2324-wt/abstract-interpretation/interim/smile
+	url = git@github.com:LukasPietzschmann/smile.git
