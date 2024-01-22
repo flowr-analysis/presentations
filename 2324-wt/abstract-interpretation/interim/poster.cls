@@ -1,6 +1,6 @@
 \ProvidesClass{poster}[The intermediate fair has never looked better]
 
-\LoadClass[oneside, landscape]{article}
+\LoadClass[oneside]{article}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -19,19 +19,21 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\RequirePackage{smile}
+\RequirePackage[tikz]{smile}
 
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{tcolorbox}
 \tcbuselibrary{skins}
-\RequirePackage[a3paper, landscape, vmargin=\z@, hmargin=\poster@margin, includefoot]{geometry}
+\RequirePackage[a3paper, vmargin=\z@, hmargin=\poster@margin, includefoot]{geometry}
 \RequirePackage[skip=0.5\baselineskip, indent=\z@]{parskip}
 \RequirePackage[tracking, expansion, babel]{microtype}
 
 \RequirePackage{etoolbox}
 \patchcmd\paragraph{3.25ex \@plus1ex \@minus.2ex}{\the\parskip plus 1ex minus .5ex}
 {}{\ClassWarning{poster}{Patching paragraph did not work}}
+
+\RequirePackage{calc}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -41,53 +43,43 @@
 \RequirePackage[lining]{FiraMono}
 
 \linespread{1.15}
-\smile@linewidth1.2px
+\smile@linewidth2.2px
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \ensureinfocommand{title}
+\ensureinfocommand{subtitle}
 \ensureinfocommand{author}
 \ensureinfocommand{date}
 \ensureinfocommand{uni}
 \ensureinfocommand{institute}
 \ensureinfocommand{location}
-\ensureinfocommand{logoleft}
-\ensureinfocommand{logoright}
+\ensureinfocommand{logo}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+\newsavebox\poster@titletextb
+\newlength\poster@titleheight
 \renewcommand\maketitle{%
 	\begingroup%
-	\hspace{-\poster@margin}%
-	\fboxsep\z@%
-	\fboxrule\z@%
-	\fcolorbox{accent}{accent!10}{%
-		\begin{minipage}[b]{\paperwidth}%
-			\vspace*{2.5ex}%
-			\hspace\poster@margin%
-			\begin{minipage}{5cm}%
-				\raggedright%
-				\includegraphics[height=1.2cm]{\@logoleft}
-			\end{minipage}%
-			\begin{minipage}{\dimexpr\paperwidth-2\poster@margin-10cm}%
-				\centering\microtypesetup{tracking=false}% OMFG No tracking on the title sir
-				\fontsize{30pt}{30pt}\textsc{\textbf{\@title}}\\[1ex]%
-				\large\@author\par%
-			\end{minipage}%
-			\begin{minipage}{5cm}%
-				\raggedleft%
-				\includegraphics[height=1.2cm]{\@logoright}
-			\end{minipage}%
-			\vspace*{2.5ex}%
-			\textcolor{accent}{\hrule height \smile@linewidth\relax}%
-		\end{minipage}
-	}
-	\vskip2em\par%
+	\savebox\poster@titletextb{\begin{minipage}[c]{\dimexpr\paperwidth-2\poster@margin\relax}%
+		\vspace*{.5\poster@margin}%
+		\microtypesetup{tracking=false}% OMFG No tracking on the title sir
+		\fontsize{30pt}{30pt}\textsc{\textbf{\@title}}\\[1ex]%
+		\fontsize{20pt}{20pt}\selectfont\@subtitle\\%
+		\textcolor{accent}{\hrule height \smile@linewidth width 2cm\relax}\leavevmode\\[1ex]%
+		\large\@author\par%
+	\end{minipage}}\usebox\poster@titletextb\setlength{\poster@titleheight}{\ht\poster@titletextb + \dp\poster@titletextb}%
+	\begin{tikzpicture}[overlay, remember picture]
+		\node[anchor=north east,lw,rnd,draw=accent,fill=accent!10,minimum
+		width=.75\poster@titleheight,minimum height=\poster@titleheight,outer sep=\z@,shift={(-\poster@margin,\smile@rounding)}] at
+		(current page.north east) {\includegraphics[width=1.8cm]{\@logo}};
+	\end{tikzpicture}
 	\endgroup%
 }
 \renewcommand\@thefoot{%
