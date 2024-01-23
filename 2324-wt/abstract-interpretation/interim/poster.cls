@@ -11,8 +11,10 @@
 \DeclareDefaultOption{\PassOptionsToPackage{\CurrentOption}{smile}}
 \ProcessKeyvalOptions*
 
-\newlength\poster@margin
-\poster@margin2cm
+\newlength\poster@textmargin
+\newlength\poster@headermargin
+\poster@textmargin2cm
+\poster@headermargin3cm
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -25,7 +27,7 @@
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{tcolorbox}
 \tcbuselibrary{skins}
-\RequirePackage[a3paper, vmargin=\z@, hmargin=\poster@margin, includefoot]{geometry}
+\RequirePackage[a3paper, vmargin=\z@, hmargin=\poster@textmargin, includefoot]{geometry}
 \RequirePackage[skip=0.5\baselineskip, indent=\z@]{parskip}
 \RequirePackage[tracking, expansion, babel]{microtype}
 
@@ -65,10 +67,11 @@
 
 \newsavebox\poster@titletextb
 \newlength\poster@titleheight
+\tikzset{logo/.style={lw,rnd,draw=accent,fill=accent!70!white!20}}
 \renewcommand\maketitle{%
-	\begingroup%
-	\savebox\poster@titletextb{\begin{minipage}[c]{\dimexpr\paperwidth-2\poster@margin\relax}%
-		\vspace*{.5\poster@margin}%
+	\begingroup\hspace{-\poster@textmargin}\hspace\poster@headermargin%
+	\savebox\poster@titletextb{\begin{minipage}[c]{\dimexpr\paperwidth-2\poster@headermargin\relax}%
+		\vspace*{.5\poster@textmargin}%
 		\microtypesetup{tracking=false}% OMFG No tracking on the title sir
 		\fontsize{30pt}{30pt}\textsc{\textbf{\@title}}\\[1ex]%
 		\fontsize{20pt}{20pt}\selectfont\@subtitle\\%
@@ -76,24 +79,22 @@
 		\large\@author\par%
 	\end{minipage}}\usebox\poster@titletextb\setlength{\poster@titleheight}{\ht\poster@titletextb + \dp\poster@titletextb}%
 	\begin{tikzpicture}[overlay, remember picture]
-		\node[anchor=north east,lw,rnd,draw=accent,fill=accent!10,minimum
-		width=.75\poster@titleheight,minimum height=\poster@titleheight,outer sep=\z@,shift={(-\poster@margin,\smile@rounding)}] at
-		(current page.north east) {\includegraphics[width=1.8cm]{\@logo}};
+		\node[node on layer=foreground,anchor=north east,minimum width=.75\poster@titleheight,minimum height=\poster@titleheight,outer sep=\z@,shift={(-\poster@headermargin,\smile@rounding)},logo] at (current page.north east) {\includegraphics[width=1.8cm]{\@logo}};
 	\end{tikzpicture}
 	\endgroup%
 }
 \renewcommand\@thefoot{%
 	\begingroup%
-	\hspace{-\poster@margin}%
+	\hspace{-\poster@textmargin}%
 	\fboxsep\z@%
 	\fboxrule\z@%
 	\fcolorbox{accent}{accent!10}{%
 		\begin{minipage}[b]{\paperwidth}%
 			\textcolor{accent}{\hrule height \smile@linewidth\relax}
 			\vspace*{0.7ex}%
-			\hspace\poster@margin%
+			\hspace\poster@headermargin%
 			\@date\hfill\@institute\hfill\@uni%
-			\hspace\poster@margin%
+			\hspace\poster@headermargin%
 			\vspace*{0.7ex}%
 		\end{minipage}
 	}
