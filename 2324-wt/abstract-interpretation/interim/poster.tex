@@ -2,10 +2,7 @@
 \newcommand\input@path{{smile}}
 \makeatother
 
-\documentclass[color]{poster}
-
-\definecolor{flowr-pink}{HTML}{764247}
-\colorlet{accent}{flowr-pink}
+\documentclass[color,coloraccent=darkmaroon]{poster}
 
 \title{Abstract Interpretation}
 \subtitle{The cooler AI}
@@ -16,5 +13,9 @@
 \logo{logos/splogo.png}
 
 \begin{document}
+\tikzset{logo/.append style={fill opacity=0.85}}
+\begin{tikzpicture}[remember picture, overlay]
+	\node[shift={(-18mm,-18mm)},node on layer=background] at (current page.north east) {\includegraphics[width=0.55\paperwidth]{logos/flowr.pdf}};
+\end{tikzpicture}
 \maketitle
 \end{document}
