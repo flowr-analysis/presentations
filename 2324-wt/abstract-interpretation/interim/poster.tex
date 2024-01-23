@@ -1,8 +1,10 @@
 \makeatletter
-\newcommand\input@path{{smile}}
+\newcommand\input@path{{smile},{flowr-logo}}
 \makeatother
 
-\documentclass[color,coloraccent=darkmaroon]{poster}
+\documentclass[color,coloraccent=red!60!black]{poster}
+
+\usepackage[notext,color=accent]{flowrlogo}
 
 \title{Abstract Interpretation}
 \subtitle{The cooler AI}
@@ -15,7 +17,7 @@
 \begin{document}
 \tikzset{logo/.append style={fill opacity=0.85}}
 \begin{tikzpicture}[remember picture, overlay]
-	\node[shift={(-18mm,-18mm)},node on layer=background] at (current page.north east) {\includegraphics[width=0.55\paperwidth]{logos/flowr.pdf}};
+	\node[shift={(-18mm,-18mm)},node on layer=background,scale=13] at (current page.north east) {\flowrlogo};
 \end{tikzpicture}
 \maketitle
 \end{document}

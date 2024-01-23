@@ -1,3 +1,6 @@
 [submodule "2324-wt/abstract-interpretation/interim/smile"]
 	path = 2324-wt/abstract-interpretation/interim/smile
 	url = git@github.com:LukasPietzschmann/smile.git
+[submodule "2324-wt/abstract-interpretation/interim/flowr-logo"]
+	path = 2324-wt/abstract-interpretation/interim/flowr-logo
+	url = git@github.com:EagleoutIce/flowr-logo.git
