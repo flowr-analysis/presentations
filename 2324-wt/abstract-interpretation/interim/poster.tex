@@ -5,6 +5,9 @@
 \documentclass[color,coloraccent=red!60!black]{poster}
 
 \usepackage[notext,color=accent]{flowrlogo}
+\usepackage{lipsum}
+\usepackage[normalem]{ulem}
+\usepackage[inline]{enumitem}
 
 \title{Abstract Interpretation}
 \subtitle{The cooler AI}
@@ -14,10 +17,50 @@
 \date{02/02/2024}
 \logo{logos/splogo.png}
 
+\columnseprule0pt
+\def\ULthickness{.7pt}
+
 \begin{document}
 \tikzset{logo/.append style={fill opacity=0.85}}
 \begin{tikzpicture}[remember picture, overlay]
 	\node[shift={(-18mm,-18mm)},node on layer=background,scale=13] at (current page.north east) {\flowrlogo};
 \end{tikzpicture}
 \maketitle
+
+\begin{tikzpicture}
+	\node[roundednode,minimum width=\textwidth,minimum height=0.25\textheight,draw=black,fill=lightgray!20,fill opacity=0.85] {\Large Eye catching figure};
+\end{tikzpicture}
+
+\begin{multicols}{3}
+	\begin{minipage}{\dimexpr2\columnwidth+\columnsep\relax}
+		\begin{tikzpicture}
+			\node[roundednode,minimum width=\textwidth,minimum height=0.2\textheight,draw=black,fill=lightgray!20] {\Large Maybe an example?!};
+		\end{tikzpicture}
+		\lipsum[1-4]
+	\end{minipage}\vfill\columnbreak\null\columnbreak
+	\section*{Project Organization}
+	\paragraph{Organization} We're doing \emph{weekly meetings}, where we discuss the
+	progress made in the past week, talk about open issues, and prioritize tasks for the
+	next week. We also keep a \emph{record of important things} that came up in our
+	meeting. If there's any spare time, Florian often tells me about new
+	\sout{weird}cool thing he learned about the R language.
+	\paragraph{Tech Stack} \textit{flowR} is developed with TypeScript, then compiled
+	down to JavaScript with Node.js as its runtime. While we use different libraries for
+	utilitarian tasks --- like chai for assertions, mocha for tests, or tslog for
+	logging --- all major functionalities are implemented by hand. This includes
+	the abstract interpretation itself.
+	\paragraph{QA} To ensure that we don't break stuff, \textit{flowR} features over
+	1000 tests. We're also constantly adding new ones, as soon as there is new code in
+	the project.\par
+	To ensure the employment of best practices, we always do a code review on pull
+	requests. This massively helps with keeping the code easy to understand and well
+	readable.\par
+	We also use assertions --- or how we call them:~guards --- whenever possible to make
+	sure our mental model aligns with the actual execution of the code.
+	\paragraph{Documentation} \textit{flowR}'s documentation is split into two parts:
+	\begin{enumerate*}
+		\item a user facing documentation hosted in a GitHub wiki and
+		\item a developer facing documentation built from inline comments
+	\end{enumerate*}. % TODO more on docs
+\end{multicols}
 \end{document}
