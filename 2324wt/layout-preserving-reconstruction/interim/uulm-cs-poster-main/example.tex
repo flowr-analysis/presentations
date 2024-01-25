@@ -1,0 +1,47 @@
+\errorcontextlines9999
+\documentclass[a3paper, portrait, english, default]{uulm-cs-poster}
+
+\usepackage{lipsum}
+
+\title{flowR}
+\subtitle{Layout Preserving Reconstruction}
+\author{Pascal Deusch\and Wizard 2}
+\institute{Institut für Software Engineering und Programiersprachen}
+\university{Universität Ulm}
+\logo{\splogo}
+\date{\today}
+
+\addbibresource{references.bib}
+\nocite{*}
+
+\begin{document}
+\maketitle
+%\section*{Why dogs are better cats}
+%\lipsum[2]
+%\vfil
+\begin{multicols}{2}
+\section*{FlowR}
+   %Describtion of FlowR
+	flowR is a static dataflow analyzer and program slicer for the R programming language.\\%reference flowR repo
+	flowR allows its users to look at dataflow graphs for their R programs, generate slices for specified variables, and reconstruct those slices, amongst other functionalities.
+	flowR is build in modules with its main modules being:
+   \begin{itemize}
+      \item a statistics module
+      \item a benchmark module
+	  \item a core module
+      \item and a slicer module.
+   \end{itemize}
+	The statistics module is used to analyze R file and identify common patterns in them. The benchmarker module serves as a way to benchmark flowR's performance.
+	The core module contains flowR's main definitions and is the home of flowR's read-eval-print loop (REPL) and flowR's server. The slicer module contains flowR's backward program slicer for R. This module consists of four submoduls with a custom R bridge, a way to normalize the AST representation of the dataflow graph, a dataflow analyzer for said dataflow graph, and the reconstruct module.
+	My project is focused on the reconstruction module. There the work was mostly centered around the implementation of a layout preserving reconstruction.
+\section*{Layout Preserving Reconstruction}
+   \lipsum[4-6]
+   \paragraph{Paragraph}\lipsum[7]
+\end{multicols}
+%\lipsum[2]
+\section*{My Contributions}
+\begin{multicols}{4}
+   \lipsum[2]
+   \printbibliography
+\end{multicols}
+\end{document}
