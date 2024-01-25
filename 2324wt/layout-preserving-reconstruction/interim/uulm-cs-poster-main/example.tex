@@ -34,14 +34,20 @@
 	The statistics module is used to analyze R file and identify common patterns in them. The benchmarker module serves as a way to benchmark flowR's performance.
 	The core module contains flowR's main definitions and is the home of flowR's read-eval-print loop (REPL) and flowR's server. The slicer module contains flowR's backward program slicer for R. This module consists of four submoduls with a custom R bridge, a way to normalize the AST representation of the dataflow graph, a dataflow analyzer for said dataflow graph, and the reconstruct module.
 	My project is focused on the reconstruction module. There the work was mostly centered around the implementation of a layout preserving reconstruction.
+	\paragraph{Reconstruction}
+	The reconstruction works in simple steps. The R parser parses the R code into an AST, which then gets normalized. This normalized AST is then traversed through a fold where the lexemes get put together with location information and additional tokens to create code parts. The code parts will, in a final step, get sorted and put together to form the final output.\\
+	Currently the reconstruction is able to generate a layout preserving reconstruction using the location information and additional tokens, however not all additional tokens are currently in use. Mostly parentheses are being used to preseve the layout of loops. This, however, will be expanded in future updates to flowR, in order to iron out some quirks of the layout preserving reconstruction and possibly include the option for ... reconsturction.
 \section*{Layout Preserving Reconstruction}
    \lipsum[4-6]
-   \paragraph{Paragraph}\lipsum[7]
+   %\paragraph{Paragraph}\lipsum[7]
 \end{multicols}
 %\lipsum[2]
 \section*{My Contributions}
 \begin{multicols}{4}
-   \lipsum[2]
+   %\lipsum[2]
+	During my project, I refactored the structure of the preexisting reconstruction implementation. This was done to increase the readability of the module, as well as improve the quality for future improvements. The main part of the project so far has, however, been spent on improving the reconstruction by implementing layout preserving reconstruction.
+	To achieve this we introduced two new parts. First we utalized the location information of the R parser to give the lexemes a position within the final output. Using this we then build up the code representation of the slice using the location information by first sorting all parts into their correct order and then appending all part together.
+	Secondly, we introduced and utalized additional tokens, which include parenthesies and other special characters. These additional tokens then get added into the part with their locations, to get sorted and added to the output.
    \printbibliography
 \end{multicols}
 \end{document}
