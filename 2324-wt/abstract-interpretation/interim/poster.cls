@@ -37,6 +37,11 @@
 
 \RequirePackage{calc}
 
+\RequirePackage[grid]{multicol}
+\def\columnseprulecolor{\color{accent}}
+\columnseprule\smile@linewidth
+\columnsep3em
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -80,7 +85,7 @@
 	\end{minipage}}\usebox\poster@titletextb\setlength{\poster@titleheight}{\ht\poster@titletextb + \dp\poster@titletextb}%
 	\begin{tikzpicture}[overlay, remember picture]
 		\node[node on layer=foreground,anchor=north east,minimum width=.75\poster@titleheight,minimum height=\poster@titleheight,outer sep=\z@,shift={(-\poster@headermargin,\smile@rounding)},logo] at (current page.north east) {\includegraphics[width=1.8cm]{\@logo}};
-	\end{tikzpicture}
+	\end{tikzpicture}\vspace{1cm}
 	\endgroup%
 }
 \renewcommand\@thefoot{%
@@ -132,7 +137,7 @@ segmentation style={solid, shorten >=1em,shorten <=1em, line width=\smile@linewi
 
 
 \RequirePackage[grid]{multicol}
-\renewcommand\columnseprulecolor{\color{accent}}
+\def\columnseprulecolor{\color{accent}}
 \columnseprule\smile@linewidth
 \columnsep3em
 
