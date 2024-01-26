@@ -19,6 +19,8 @@
 \columnseprule0pt
 \def\ULthickness{.7pt}
 
+\def\flowr{\textit{flowR}}
+
 \begin{document}
 \tikzset{logo/.append style={fill opacity=0.85}}
 \begin{tikzpicture}[remember picture, overlay]
@@ -43,23 +45,23 @@
 	next week. We also keep a \emph{record of important things} that came up in our
 	meeting. If there's any spare time, Florian often tells me about new
 	\sout{weird}cool thing he learned about the R language.
-	\paragraph{Tech Stack} \textit{flowR} is developed with TypeScript, then compiled
+	\paragraph{Tech Stack} \flowr{} is developed with \emph{TypeScript}, then compiled
 	down to JavaScript with Node.js as its runtime. While we use different libraries for
 	utilitarian tasks --- like chai for assertions, mocha for tests, or tslog for
-	logging --- all major functionalities are implemented by hand. This includes
+	logging --- all major functionalities are implemented \emph{by hand}. This includes
 	the abstract interpretation itself.
-	\paragraph{QA} To ensure that we don't break stuff, \textit{flowR} features over
-	1000 tests. We're also constantly adding new ones, as soon as there is new code in
-	the project.\par
-	To ensure the employment of best practices, we always do a code review on pull
-	requests. This massively helps with keeping the code easy to understand and well
-	readable.\par
-	We also use assertions --- or how we call them:~guards --- whenever possible to make
-	sure our mental model aligns with the actual execution of the code.
-	\paragraph{Documentation} \textit{flowR}'s documentation is split into two parts:
+	\paragraph{QA} To ensure that we don't break stuff, \flowr{} features over
+	\emph{1000 tests}. We're also constantly adding new ones, as soon as there is new
+	code in the project.\par To ensure the employment of best practices, we always do a
+	\emph{code review} on pull requests. This massively helps with keeping the code easy
+	to understand and well readable.\par
+	We also make heavy use of \emph{assertions} --- or how we call them:~guards ---
+	whenever possible to make sure our mental model aligns with the actual execution of
+	the code.
+	\paragraph{Documentation} \flowr's documentation is split into two parts:
 	\begin{enumerate*}
-		\item a user facing documentation hosted in a GitHub wiki and
-		\item a developer facing documentation built from inline comments
+		\item a \emph{user facing} documentation hosted in a GitHub wiki and
+		\item a \emph{developer facing} documentation built from inline comments
 	\end{enumerate*}. % TODO more on docs
 	\section*{Future Work}
 	\lipsum[2]

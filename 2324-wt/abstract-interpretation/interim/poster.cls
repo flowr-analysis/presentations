@@ -141,4 +141,7 @@ segmentation style={solid, shorten >=1em,shorten <=1em, line width=\smile@linewi
 \columnseprule\smile@linewidth
 \columnsep3em
 
+\let\oldemph\emph
+\def\emph#1{{\color{accent!40!black}\oldemph{#1}}}
+
 \pagestyle{empty}
