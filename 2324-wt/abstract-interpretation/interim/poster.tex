@@ -41,21 +41,21 @@
 \begin{multicols}{3}
 	\begin{minipage}{\dimexpr2\columnwidth+\columnsep\relax}
 		\section*{How abstract interpretation fits into \flowr}
-		\paragraph{What even is \flowr}\flowr{} is a static dataflow analyzer and
-		program slicer for the R language. Program slicers reduce a given program to a
-		set of statements --- the so called slices --- that influence a variable at a
-		specific point in the program --- the slicing criterion. \flowr{} formulates the
-		slicing as a reachability problem on the dataflow graph, which itself is based
-		on the abstract syntax tree of the given R~program.
+		\paragraph{What even is \flowr}\flowr{} is a static \emph{dataflow analyzer} and
+		\emph{program slicer} for the R language. Program slicers reduce a given program
+		to a set of statements --- the so called slices --- that influence a variable at
+		a specific point in the program --- the slicing criterion. \flowr{} formulates
+		the slicing as a reachability problem on the dataflow graph, which itself is
+		based on the abstract syntax tree of the given R~program.
 		\paragraph{What is abstract interpretation} Abstract interpretation is all about
-		figuring out runtime properties of a given program without actually executing
-		it. These properties include aspects like the sign or nullness of a variable.
-		For now, Florian and I decided to limit ourselves to determining the domain of
-		numeric variables. In other words, we want to know what values a variable can
-		have at a certain point in the program.
+		figuring out \emph{runtime properties} of a given program without actually
+		executing it. These properties include aspects like the sign or nullness of a
+		variable. For now, Florian and I decided to limit ourselves to determining the
+		\emph{domain of numeric variables}. In other words, we want to know what values
+		a variable can have at a certain point in the program.
 		\paragraph{Abstract interpretation in \flowr} Abstract interpretation helps
-		\flowr{} to further narrow down the slice of a program. This can be done by
-		removing certain paths from the dataflow graph if we can prove that they will
+		\flowr{} to further \emph{narrow down the slice} of a program. This can be done
+		by removing certain paths from the dataflow graph if we can prove that they will
 		never be executed. Imagine a conditional like \rc{if(i < 10) doit() else run()}.
 		If, through abstract interpretation, we know that \rc{i} is always smaller than
 		\rc{10}, there's no need to include the path stemming from the \rc{if}'s
