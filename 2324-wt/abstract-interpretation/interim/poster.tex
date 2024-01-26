@@ -2,11 +2,12 @@
 \newcommand\input@path{{smile},{flowr-logo}}
 \makeatother
 
-\documentclass[color,coloraccent=red!60!black]{poster}
+\documentclass[color,coloraccent=red!60!black,listings]{poster}
 
 \usepackage[notext,color=accent]{flowrlogo}
 \usepackage{lipsum}
 \usepackage[normalem]{ulem}
+\usepackage[verbatim]{lstfiracode}
 
 \title{Abstract Interpretation}
 \subtitle{The cooler AI}
@@ -21,6 +22,11 @@
 
 \def\flowr{\textit{flowR}}
 
+\makeatletter\lstdefinestyle{firastyle}{style=FiraCodeStyle,style=smile@lst@base}\makeatother
+\lstset{style=firastyle}
+
+\def\rc#1{\lstinline[language=r]{#1}}
+
 \begin{document}
 \tikzset{logo/.append style={fill opacity=0.85}}
 \begin{tikzpicture}[remember picture, overlay]
@@ -34,13 +40,31 @@
 
 \begin{multicols}{3}
 	\begin{minipage}{\dimexpr2\columnwidth+\columnsep\relax}
-		\section*{What even is \flowr}
-		\lipsum[4]
+		\section*{How abstract interpretation fits into \flowr}
+		\paragraph{What even is \flowr}\flowr{} is a static dataflow analyzer and
+		program slicer for the R language. Program slicers reduce a given program to a
+		set of statements --- the so called slices --- that influence a variable at a
+		specific point in the program --- the slicing criterion. \flowr{} formulates the
+		slicing as a reachability problem on the dataflow graph, which itself is based
+		on the abstract syntax tree of the given R~program.
+		\paragraph{What is abstract interpretation} Abstract interpretation is all about
+		figuring out runtime properties of a given program without actually executing
+		it. These properties include aspects like the sign or nullness of a variable.
+		For now, Florian and I decided to limit ourselves to determining the domain of
+		numeric variables. In other words, we want to know what values a variable can
+		have at a certain point in the program.
+		\paragraph{How does AI help \flowr} Abstract interpretation helps \flowr{} to
+		further narrow down the slice of a program. This can be done by removing certain
+		paths from the dataflow graph by proving that they will never be executed.
+		Imagine a conditional like \rc{if(i < 10) doit() else run()}.
+		If, through abstract interpretation, we know that \rc{i} is always smaller than
+		\rc{10}, there's no need to consider the path stemming from the \rc{if}'s
+		else-case.
 		\section*{Abstract Interpretation}
 		\begin{tikzpicture}
 			\node[roundednode,minimum width=\textwidth,minimum height=0.2\textheight,draw=black,fill=lightgray!20] {\Large Maybe an example?!};
 		\end{tikzpicture}
-		\lipsum[1-3]
+		\lipsum[1-2]
 	\end{minipage}\vfill\columnbreak\null\columnbreak
 	\section*{Project Organization}
 	\paragraph{Organization} We're doing \emph{weekly meetings}, where we discuss the
