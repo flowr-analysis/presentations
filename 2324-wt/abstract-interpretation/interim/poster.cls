@@ -48,6 +48,7 @@
 
 \RequirePackage[default]{FiraSans}
 \RequirePackage[lining]{FiraMono}
+\RequirePackage{firamath-otf}
 
 \linespread{1.15}
 \smile@linewidth2.2px
