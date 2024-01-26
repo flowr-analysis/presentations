@@ -53,9 +53,9 @@
 		\paragraph{Abstract Interpretation?} Abstract interpretation is all about
 		figuring out \emph{runtime properties} of a given program without actually
 		executing it. These properties include aspects like the sign or nullness of a
-		variable. For now, Florian and I decided to limit ourselves to determining the
-		\emph{domain of numeric variables}. In other words, we want to know what values
-		a variable can have at a certain point in the program.
+		variable. For now we decided to limit ourselves to determining the \emph{domain
+		of numeric variables}. In other words, we want to know what values a variable
+		can have at a certain point in the program.
 		\paragraph{Abstract interpretation in \flowr} Abstract interpretation helps
 		\flowr{} to further \emph{narrow down the slice} of a program. This can be done
 		by removing certain paths from the dataflow graph if we can prove that they will
