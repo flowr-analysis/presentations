@@ -90,13 +90,12 @@ if(y§\j2§ > 10) {
 
 		\node[n,roundnode,above=of Y1] (Y4) {\rc{y}\textsubscript2};
 
-		\node[dr] at (X1.north east) {\tiny$[10]$};
-		\node[ds] at (X2.north east) {\tiny$[10]$};
-		\node[dr] at (Y1.north east) {\tiny$[15]$};
-		\node[ds] at (Y2.north east) {\tiny$[15]$};
-		\node[ds] at (Y3.north east) {\tiny$\bot$};
-		\node[ds] at (Y4.north east) {\tiny$[15]$};
+		\node[dr] at (X1.north east) {\tiny$\{10\}$};
+		\node[ds] at (X2.north east) {\tiny$\{10\}$};
+		\node[dr] at (Y1.north east) {\tiny$\{15\}$};
+		\node[ds] at (Y2.north east) {\tiny$\{15\}$};
 		\node[ds] at (Y3.north east) {\tiny{\setmathfont{KpMath}$\bot$}};
+		\node[ds] at (Y4.north east) {\tiny$\{15\}$};
 
 		\node[t,fit=(X1)(X2)(Y1)(Y2)(Y3)(Y4)(C1)(C2)] (F) {};
 		% \node[label] at (F.south) {Step 2};
@@ -125,16 +124,16 @@ if(y§\j2§ > 10) {
 		\begin{scope}[no,transparency group]
 			\node[n,roundnode,below=of Y2] (Y3) {\rc{y}\textsubscript4};
 			\node[n,squarenode,below=of C1] (C2) {\rc{compB}};
-			\node[ds] at (Y3.north east) {\tiny$\bot$};
+			\node[ds] at (Y3.north east) {\tiny{\setmathfont{KpMath}$\bot$}};
 		\end{scope}
 
 		\node[n,roundnode,above=of Y1] (Y4) {\rc{y}\textsubscript2};
 
-		\node[dr] at (X1.north east) {\tiny$\top$};
-		\node[ds] at (X2.north east) {\tiny$[10]$};
-		\node[dr] at (Y1.north east) {\tiny$\top$};
-		\node[ds] at (Y2.north east) {\tiny$[15]$};
-		\node[ds] at (Y4.north east) {\tiny$[15]$};
+		\node[dr] at (X1.north east) {\tiny$\{10\}$};
+		\node[ds] at (X2.north east) {\tiny$\{10\}$};
+		\node[dr] at (Y1.north east) {\tiny$\{15\}$};
+		\node[ds] at (Y2.north east) {\tiny$\{15\}$};
+		\node[ds] at (Y4.north east) {\tiny$\{15\}$};
 
 		\node[t,fit=(X1)(X2)(Y1)(Y2)(Y3)(Y4)(C1)(C2)] (F) {};
 		% \node[label] at (F.south) {Step 3};
