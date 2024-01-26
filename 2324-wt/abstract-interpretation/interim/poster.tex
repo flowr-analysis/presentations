@@ -22,8 +22,11 @@
 
 \def\flowr{\textit{flowR}}
 
-\makeatletter\lstdefinestyle{firastyle}{style=FiraCodeStyle,style=smile@lst@base}\makeatother
-\lstset{style=firastyle}
+\makeatletter
+\lstdefinestyle{firastyleb}{style=FiraCodeStyle,style=smile@lst@base}
+\lstdefinestyle{firastylep}{style=FiraCodeStyle,style=smile@lst@plain}
+\makeatother
+\lstset{tabsize=4,style=firastyleb}
 
 \def\rc#1{\lstinline[language=r]{#1}}
 
@@ -37,9 +40,118 @@
 \end{tikzpicture}
 \maketitle
 
-\begin{tikzpicture}
-	\node[roundednode,minimum width=\textwidth,minimum height=0.25\textheight,draw=black,fill=lightgray!20,fill opacity=0.85] {\Large Eye catching figure};
-\end{tikzpicture}
+\begingroup
+\makeatletter
+\smile@linewidth1px
+\tikzset{
+	n/.style={minimum width=7mm,minimum height=7mm,shadow},
+	a/.style={arrow,short=1mm},
+	no/.style={opacity=0.3,no shadows},
+	t/.style={roundednode,dashed,node on layer=background,inner sep=2mm,fill=lightgray!20,fill opacity=0.85,minimum width=\columnwidth,minimum height=4.2cm},
+	dr/.style={pill},
+	ds/.style={pill,shift={(1mm,1mm)}},
+	label/.style={line join=round,chamfered rectangle,chamfered rectangle xsep=2pt,lw,inner sep=2pt,draw=black,fill=white},
+	node distance=6mm
+}
+\begin{multicols}{3}
+	\newsavebox\exampleb
+	\begin{lrbox}\exampleb
+	\begin{lstlisting}[language=R,style=firastylep]
+x <- 10
+y <- 5 + x
+if(y > 10) {
+	compA(y)
+} else {
+	compB(y)
+}
+	\end{lstlisting}
+	\end{lrbox}
+	\begin{tikzpicture}
+		\node (L) {\usebox\exampleb};
+		\node[t,fit=(L)] (F) {};
+		% \node[label] at (F.south) {Step 1};
+	\end{tikzpicture}\par
+	\paragraph{Step 1} To set everything up, we take in the code, get its abstract
+	syntax tree, normalize it, and finally build and return the dataflow graph. This
+	graph can then be used as a base for the next step.\par
+	\columnbreak
+	\begin{tikzpicture}
+		\node[n,roundednode] (X1) {\rc{x}\textsubscript1};
+		\node[n,roundnode,right=of X1] (X2) {\rc{x}\textsubscript2};
+		\node[n,roundednode,right=of X2] (Y1) {\rc{y}\textsubscript1};
+		\node[n,roundnode,right=of Y1] (Y2) {\rc{y}\textsubscript3};
+		\node[n,squarenode,right=of Y2] (C1) {\rc{compA}};
+
+		\node[n,roundnode,below=of Y2] (Y3) {\rc{y}\textsubscript4};
+		\node[n,squarenode,below=of C1] (C2) {\rc{compB}};
+
+		\node[n,roundnode,above=of Y1] (Y4) {\rc{y}\textsubscript2};
+
+		\node[dr] at (X1.north east) {\tiny$[10]$};
+		\node[ds] at (X2.north east) {\tiny$[10]$};
+		\node[dr] at (Y1.north east) {\tiny$[15]$};
+		\node[ds] at (Y2.north east) {\tiny$[15]$};
+		\node[ds] at (Y3.north east) {\tiny$\bot$};
+		\node[ds] at (Y4.north east) {\tiny$[15]$};
+
+		\node[t,fit=(X1)(X2)(Y1)(Y2)(Y3)(Y4)(C1)(C2)] (F) {};
+		% \node[label] at (F.south) {Step 2};
+
+		\draw[a] (X1) to (X2);
+		\draw[a] (X2) to (Y1);
+		\draw[a] (Y1) to (Y2);
+		\draw[a] (Y2) to (C1);
+
+		\draw[a] (Y1) to (Y3);
+		\draw[a] (Y3) to (C2);
+
+		\draw[a] (Y1) to (Y4);
+	\end{tikzpicture}\par
+	\paragraph{Step 2} In the second step happens the actual abstract interpretation.
+	This step will gradually decorate the dataflow graph with the domains of the
+	respective variables.\par
+	\columnbreak
+	\begin{tikzpicture}
+		\node[n,roundednode] (X1) {\rc{x}\textsubscript1};
+		\node[n,roundnode,right=of X1] (X2) {\rc{x}\textsubscript2};
+		\node[n,roundednode,right=of X2] (Y1) {\rc{y}\textsubscript1};
+		\node[n,roundnode,right=of Y1] (Y2) {\rc{y}\textsubscript3};
+		\node[n,squarenode,right=of Y2] (C1) {\rc{compA}};
+
+		\begin{scope}[no]
+			\node[n,roundnode,below=of Y2] (Y3) {\rc{y}\textsubscript4};
+			\node[n,squarenode,below=of C1] (C2) {\rc{compB}};
+			\node[ds] at (Y3.north east) {\tiny$\bot$};
+		\end{scope}
+
+		\node[n,roundnode,above=of Y1] (Y4) {\rc{y}\textsubscript2};
+
+		\node[dr] at (X1.north east) {\tiny$\top$};
+		\node[ds] at (X2.north east) {\tiny$[10]$};
+		\node[dr] at (Y1.north east) {\tiny$\top$};
+		\node[ds] at (Y2.north east) {\tiny$[15]$};
+		\node[ds] at (Y4.north east) {\tiny$[15]$};
+
+		\node[t,fit=(X1)(X2)(Y1)(Y2)(Y3)(Y4)(C1)(C2)] (F) {};
+		% \node[label] at (F.south) {Step 3};
+
+		\draw[a] (X1) to (X2);
+		\draw[a] (X2) to (Y1);
+		\draw[a] (Y1) to (Y2);
+		\draw[a] (Y2) to (C1);
+
+		\begin{scope}[no]
+			\draw[a] (Y1) to (Y3);
+			\draw[a] (Y3) to (C2);
+		\end{scope}
+
+		\draw[a] (Y1) to (Y4);
+	\end{tikzpicture}\par
+	\paragraph{Step 3} The last step uses the decorated dataflow graph to determine wich
+	path can never be executed. The identified path will then be discarded from the
+	graph.\par
+\end{multicols}\bigskip
+\endgroup
 
 \begin{multicols}{3}
 	\begin{minipage}{\dimexpr2\columnwidth+\columnsep\relax}
