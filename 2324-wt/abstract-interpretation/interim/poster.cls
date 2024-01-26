@@ -72,7 +72,10 @@
 
 \newsavebox\poster@titletextb
 \newlength\poster@titleheight
-\tikzset{logo/.style={lw,rnd,draw=accent,fill=accent!70!white!20}}
+\tikzset{
+	pipelinestep/.style={lw,rnd,shape=signal,signal from=west,signal pointer angle=130,minimum width=3cm,minimum height=2cm,draw=black,fill=lightgray!50!white},
+	logo/.style={lw,rnd,draw=accent,fill=accent!70!white!20}
+}
 \renewcommand\maketitle{%
 	\begingroup\hspace{-\poster@textmargin}\hspace\poster@headermargin%
 	\savebox\poster@titletextb{\begin{minipage}[c]{\dimexpr\paperwidth-2\poster@headermargin\relax}%
