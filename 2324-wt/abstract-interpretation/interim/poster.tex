@@ -55,15 +55,17 @@
 	node distance=6mm
 }
 \begin{multicols}{3}
+	\def\i#1{\color{gray!50!black}\textsubscript{#1}}
+	\def\j#1{\rlap{\i{#1}}}
 	\newsavebox\exampleb
 	\begin{lrbox}\exampleb
 	\begin{lstlisting}[language=R,style=firastylep]
-x <- 10
-y <- 5 + x
-if(y > 10) {
-	compA(y)
+x§\j1§ <- 10
+y§\j1§ <- 5 + x§\i2§
+if(y§\j2§ > 10) {
+	compA(y§\i3§)
 } else {
-	compB(y)
+	compB(y§\i4§)
 }
 	\end{lstlisting}
 	\end{lrbox}
