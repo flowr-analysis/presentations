@@ -150,9 +150,12 @@ if(y§\j2§ > 10) {
 
 		\draw[a] (Y1) to (Y4);
 	\end{tikzpicture}\par
-	\paragraph{Step 3} The last step uses the decorated dataflow graph to determine wich
-	path can never be executed. The identified path will then be discarded from the
-	graph.\par
+	% \paragraph{Step 3} The last step uses the decorated dataflow graph to determine wich
+	% path can never be executed. The identified path will then be discarded from the
+	% graph.\par
+	\paragraph{Step 3} The last step uses the decorated dataflow graph to determine and
+	track different properties. We can, e.g., catch endless loops, or, as shown above,
+	eliminate dead paths in the dataflow graph.\par
 \end{multicols}\bigskip
 \endgroup
 
@@ -177,7 +180,7 @@ if(y§\j2§ > 10) {
 		never be executed. Imagine a conditional like \rc{if(i < 10) doit() else run()}.
 		If, through abstract interpretation, we know that \rc{i} is always smaller than
 		\rc{10}, there's no need to include the path stemming from the \rc{if}'s
-		else-case in the slice.
+		else-case in the slice. % TODO: is this okay? Or does it read like we only catch dead code
 		\section*{Abstract Interpretation}
 		\begin{tikzpicture}
 			\node[roundednode,minimum width=\textwidth,minimum height=0.2\textheight,draw=black,fill=lightgray!20] {\Large Maybe an example?!};
