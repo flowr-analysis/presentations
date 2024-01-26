@@ -118,7 +118,7 @@ if(y > 10) {
 		\node[n,roundnode,right=of Y1] (Y2) {\rc{y}\textsubscript3};
 		\node[n,squarenode,right=of Y2] (C1) {\rc{compA}};
 
-		\begin{scope}[no]
+		\begin{scope}[no,transparency group]
 			\node[n,roundnode,below=of Y2] (Y3) {\rc{y}\textsubscript4};
 			\node[n,squarenode,below=of C1] (C2) {\rc{compB}};
 			\node[ds] at (Y3.north east) {\tiny$\bot$};
@@ -140,7 +140,7 @@ if(y > 10) {
 		\draw[a] (Y1) to (Y2);
 		\draw[a] (Y2) to (C1);
 
-		\begin{scope}[no]
+		\begin{scope}[no,transparency group]
 			\draw[a] (Y1) to (Y3);
 			\draw[a] (Y3) to (C2);
 		\end{scope}
