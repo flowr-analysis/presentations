@@ -27,10 +27,13 @@
 
 \def\rc#1{\lstinline[language=r]{#1}}
 
+\newsavebox\flowrlogob
+\savebox\flowrlogob{\flowrlogo}
+\def\uselogo#1{\scalebox{#1}{\usebox\flowrlogob}}
 \begin{document}
 \tikzset{logo/.append style={fill opacity=0.85}}
 \begin{tikzpicture}[remember picture, overlay]
-	\node[shift={(-18mm,-18mm)},node on layer=background,scale=13] at (current page.north east) {\flowrlogo};
+	\node[shift={(-18mm,-18mm)},node on layer=background] at (current page.north east) {\uselogo{13}};
 \end{tikzpicture}
 \maketitle
 
