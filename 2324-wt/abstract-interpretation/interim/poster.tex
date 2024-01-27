@@ -78,8 +78,8 @@ if(y§\j2§ > 10) {
 	\end{tikzpicture}\par
 	\paragraph{Step 1} To set everything up, we take in the code, get its abstract
 	syntax tree, normalize it, and finally build and return the dataflow graph. This
-	graph can then be used as a base for the next step.\par
-	\columnbreak
+	graph will then be used as a base for the next step.\par
+	\newcolumn
 	\begin{tikzpicture}
 		\node[n,roundednode] (X1) {\rc{x}\textsubscript1};
 		\node[n,roundnode,right=of X1] (X2) {\rc{x}\textsubscript2};
@@ -112,9 +112,9 @@ if(y§\j2§ > 10) {
 
 		\draw[a] (Y1) to (Y4);
 	\end{tikzpicture}\par
-	\paragraph{Step 2} In the second step happens the actual abstract interpretation.
+	\paragraph{Step 2} In the second step, the actual abstract interpretation happens.
 	This step will gradually decorate the dataflow graph with the domains of the
-	respective variables.\par
+	respective variables, by traversing the control flow graph.\par
 	\columnbreak
 	\begin{tikzpicture}
 		\node[n,roundednode] (X1) {\rc{x}\textsubscript1};
@@ -156,8 +156,8 @@ if(y§\j2§ > 10) {
 	% path can never be executed. The identified path will then be discarded from the
 	% graph.\par
 	\paragraph{Step 3} The last step uses the decorated dataflow graph to determine and
-	track different properties. We can, e.g., catch endless loops, or, as shown above,
-	eliminate dead paths in the dataflow graph.\par
+	track different properties of the original code. We can, e.g., catch endless loops,
+	or, as shown above, ignore dead nodes in the dataflow graph.\par
 \end{multicols}\bigskip
 \endgroup
 
@@ -195,18 +195,18 @@ if(y§\j2§ > 10) {
 	next week. We also keep a \emph{record of important things} that came up in our
 	meeting. If there's any spare time, Florian often tells me about new
 	\sout{weird}cool things he learned about the R language.
-	\paragraph{Tech Stack} \flowr{} is developed with \emph{TypeScript}, then compiled
-	down to JavaScript with Node.js as its runtime. While we use different libraries for
+	\paragraph{Tech Stack} \flowr{} is developed with \emph{TypeScript}, then transpiled
+	to JavaScript with Node.js as its runtime. While we use different libraries for
 	utilitarian tasks --- like chai for assertions, mocha for tests, or tslog for
-	logging --- all major functionalities are implemented \emph{by hand}. This includes
-	the abstract interpretation itself.
+	logging --- all major functionalities, including abstract interpretation, are
+	implemented \emph{by hand}, as there's a big lack of libraries supporting the R
+	programming language.
 	\paragraph{QA} To ensure the employment of best practices, we always do \emph{code
 	reviews} on pull requests. This massively helps with keeping the code easy to
 	understand and well readable.\par
-	If an error slips through during the review, rest assured that one of \flowr's
-	extensive suite of over \emph{1000 tests} will certainly catch it. Additionally, we
-	consistently introduce new tests promptly whenever there is new code in the
-	project.\par
+	If an error slips through during the review, one of \flowr's extensive suite of over
+	\emph{1000 tests} will probably catch it. Additionally, we consistently introduce
+	new tests promptly whenever there is new code in the project.\par
 	We also make heavy use of \emph{assertions} --- or how we call them:~guards ---
 	whenever possible to make sure our mental model aligns with the actual execution of
 	the code.
