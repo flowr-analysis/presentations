@@ -37,7 +37,7 @@
 \savebox\flowrlogob{\flowrlogo}
 \def\uselogo#1{\scalebox{#1}{\usebox\flowrlogob}}
 \begin{document}
-\tikzset{logo/.append style={fill opacity=0.85}}
+\tikzset{logo/.append style={fill opacity=0.9}}
 \begin{tikzpicture}[remember picture, overlay]
 	\node[shift={(-18mm,-18mm)},node on layer=background] at (current page.north east) {\uselogo{13}};
 \end{tikzpicture}
@@ -50,7 +50,7 @@
 	n/.style={minimum width=7mm,minimum height=7mm,shadow},
 	a/.style={arrow,short=1mm},
 	no/.style={opacity=0.3,no shadows},
-	t/.style={roundednode,dashed,node on layer=background,inner sep=2mm,fill=lightgray!20,fill opacity=0.85,minimum width=\columnwidth,minimum height=4.2cm},
+	t/.style={roundednode,dashed,node on layer=background,inner sep=2mm,fill=lightgray!20,fill opacity=0.9,minimum width=\columnwidth,minimum height=4.2cm},
 	dr/.style={pill},
 	ds/.style={pill,shift={(1mm,1mm)}},
 	label/.style={line join=round,chamfered rectangle,chamfered rectangle xsep=2pt,lw,inner sep=2pt,draw=black,fill=white},
