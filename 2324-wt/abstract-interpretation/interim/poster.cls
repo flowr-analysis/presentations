@@ -47,8 +47,18 @@
 
 
 \RequirePackage[default]{FiraSans}
-\RequirePackage[lining]{FiraMono}
-\RequirePackage{firamath-otf}
+\setmonofont{FiraCode}[
+	Path=./fonts/,
+	Extension=.ttf,
+	BoldFont={*-Bold},
+	UprightFont={*-Regular},
+	Contextuals=Alternate
+]
+\RequirePackage{unicode-math}
+\setmathfont{FiraMath-Regular}[
+	Path=./fonts/,
+	Extension=.otf
+]
 
 \linespread{1.15}
 \smile@linewidth2.2px
