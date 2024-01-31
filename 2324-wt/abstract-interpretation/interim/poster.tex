@@ -185,12 +185,11 @@ if(y§\j2§ > 10) {
 		of numeric variables}. In other words, we want to know what values a variable
 		can have at a certain point in the program.
 		\paragraph{Abstract Interpretation in \flowr} Abstract interpretation helps
-		\flowr{} to further \emph{narrow down the slice} of a program. This can be done
-		by removing certain paths from the dataflow graph if we can prove that they will
-		never be executed. Imagine a conditional like \rc{if(i < 10) doit() else run()}.
-		If, through abstract interpretation, we know that \rc{i}'s value is always less than
-		\rc{10}, there's no need to include the path stemming from the \rc{if}'s
-		else-case in the slice. % TODO: is this okay? Or does it read like we only catch dead code
+		\flowr{} to build a more precise dataflow graph by removing certain paths if we
+		can prove that they will never be executed. Imagine a conditional like \rc{if(i
+		< 10) doit() else run()}. If, through abstract interpretation, we know that
+		\rc{i}'s value is always less than \rc{10}, there's no need to include the path
+		stemming from the \rc{if}'s else-case in the slice.
 		\section*{Abstract Interpretation}
 		\begingroup
 		\lstset{numbers=left,numberblanklines=false,firstnumber=0,style=firastylep,numbers=left,numbersep=5pt}
@@ -207,8 +206,8 @@ if(y§\j2§ > 10) {
 		\newsavebox\codeexampleb
 		\begin{lrbox}\codeexampleb
 			\begin{lstlisting}[language=R]
-§$\text{\normalfont let}\ a \in [0, 200]$\nolnnr§
-§$\text{\normalfont let}\ b \in [5, 10]$\yeslnnr1\medskip§
+§$\text{\normalfont let}\ a \in [0, 200] \subset \mathbb{N}_0$\nolnnr§
+§$\text{\normalfont let}\ b \in [5, 10] \subset \mathbb{N}_0$\yeslnnr1\medskip§
 if (a < 100) {
 	a <- a + 1
 } else {
@@ -226,7 +225,7 @@ a; b
 				\noalign{\global\arrayrulewidth=.5\smile@linewidth}
 				\hline
 				\rowcolor{lightgray}  $a$ & $b$                             \\\hline
-				\lnnr0\intv{a}{0}{200}    & \intv{b}{5}{10} \\
+				\lnnr{start}\intv{a}{0}{200}    & \intv{b}{5}{10} \\
 				\lnnr1\intv{a}{0}{99}     & \intv{b}{5}{10} \\
 				\lnnr2\intv{a}{1}{100}    & \intv{b}{5}{10} \\
 				\lnnr3\intv{a}{100}{200}  & \intv{b}{5}{10} \\
@@ -248,7 +247,8 @@ a; b
 		We assume that the integer variables \rc{a} and \rc{b} have both been defined
 		and initialized elsewhere. When entering the snippet shown above, their values
 		are assumed to fall within the domain \intv{a}{0}{200} and
-		\intv{b}{5}{10}.\par
+		\intv{b}{5}{10}. We can read this as follows: \rc{a}'s value will always be
+		greater or equal to $0$, and less than or equal to $200$.\par
 		We then start by traversing the control flow graph in execution order,
 		processing each element of the original program. We're especially interested in
 		\begin{enumerate*}
