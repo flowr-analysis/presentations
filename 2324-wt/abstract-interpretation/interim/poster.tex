@@ -230,11 +230,11 @@ if (a < 100) {
 		\end{lrbox}
 		\begin{multicols}{2}
 			\begin{tikzpicture}
-				\node[t] (L) {\usebox\codeexampleb};
+				\node[t,minimum height=5cm] (L) {\usebox\codeexampleb};
 			\end{tikzpicture}\par
 			\paragraph{Fig. 1} The code we want to analyze.\par\columnbreak
 			\begin{tikzpicture}
-				\node[t] (L) {\usebox\tableexampleb};
+				\node[t,minimum height=5cm] (L) {\usebox\tableexampleb};
 			\end{tikzpicture}\par
 			\paragraph{Fig. 2} The computed domain for each variable at every line.
 		\end{multicols}\bigskip
