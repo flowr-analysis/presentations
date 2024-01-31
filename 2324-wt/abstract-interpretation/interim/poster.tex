@@ -9,7 +9,6 @@
 \usepackage[normalem]{ulem}
 \usepackage[verbatim]{lstfiracode}
 \usepackage[notext,nott,nosf,nomath]{kpfonts-otf}
-\usepackage{stmaryrd}
 
 \title{Abstract Interpretation}
 \subtitle{The cooler AI}
@@ -164,7 +163,7 @@ if(y§\j2§ > 10) {
 	\paragraph{Step 3} The last step uses the decorated dataflow graph to determine and
 	track different properties of the original code. We can, e.g., catch endless loops,
 	or, as shown above, ignore unreachable nodes in the dataflow graph.\par
-\end{multicols}\bigskip
+\end{multicols}\smallskip
 \endgroup
 
 \begin{multicols}{3}
@@ -268,11 +267,12 @@ a; b
 		domain. In the \rc{if}-\rc{else} above, we can be sure that in the then-case,
 		the condition \rc{a < 100} will always hold, the opposite is true for the
 		else-case. Figure~2 shows this in line 1, where \rc{a}'s domain \intv{a}{0}{200}
-		got narrowed down to \intv{a}{0}{99}.\par Besides the domains shown above, we
-		use two special values to indicate two cases. We use \ttop~(top) whenever the
-		domain of a variable is unknown. Or in different words: when the variable could
-		take every possible value. If the opposite is the case --- if a variable can't
-		take any value --- we use \tbot~(bottom).
+		got narrowed down to \intv{a}{0}{99}.\par
+		Besides the domains shown above, we use two special values to indicate two
+		cases. We use \ttop~(top) whenever the domain of a variable is unknown. Or in
+		different words: when the variable could take every possible value. If the
+		opposite is the case --- if a variable can't take any value --- we use
+		\tbot~(bottom).
 		\endgroup
 	\end{minipage}\vfill\columnbreak\null\columnbreak
 	\section*{Project Organization}
@@ -301,13 +301,12 @@ a; b
 	\begin{enumerate*}
 		\item a \emph{user facing} documentation hosted in a GitHub wiki and
 		\item a \emph{developer facing} documentation built from inline comments
-	\end{enumerate*}. % TODO more on docs
-	\section*{Future Work}
-	Well, there's still \emph{a lot to do}! As a first step, we need to implement
-	support for \emph{more control structures}, \emph{operators}, and \emph{function
-	calls}. When this is done and basic cases are handled well, we can start
-	\emph{modifying the dataflow graph} and automatically through that, narrow down the
-	slices \flowr{} produces. As a last step, there are many things that can be
+	\end{enumerate*}.\par
+	\section*{Future Work} Well, there's still \emph{a lot to do}! As a first step, we
+	need to implement support for \emph{more control structures}, \emph{operators}, and
+	\emph{function calls}. When this is done and basic cases are handled well, we can
+	start \emph{modifying the dataflow graph} and automatically through that, narrow
+	down the slices \flowr{} produces. As a last step, there are many things that can be
 	\emph{optimized}, like the representation of domains. While this is definitely not
 	mission critical, good performance is always a nice thing to have.\par
 	And all of this is only just the tip of the iceberg. Abstract interpretation allows
