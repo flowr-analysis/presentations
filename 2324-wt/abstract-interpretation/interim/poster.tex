@@ -24,6 +24,8 @@
 \columnseprule0pt
 \def\ULthickness{.7pt}
 
+\colorlet{smile@lst@color@lnnr}{darkgray}
+
 \def\flowr{\textit{flowR}}
 
 \makeatletter
@@ -215,7 +217,7 @@ if (a < 100) {
 		\def\intv#1#2#3{$[#2, #3]$}
 		\newsavebox\tableexampleb
 		\begin{lrbox}\tableexampleb
-			\def\arraystretch{1.1}\def\lnnr#1{\makeatletter{\smile@lst@style@linenr\llap{\color{gray}#1\hspace{2ex}}}}
+			\def\arraystretch{1.1}\def\lnnr#1{\makeatletter{\smile@lst@style@linenr\llap{#1\hspace{2ex}}}}
 			\makeatletter\begin{tabular}{ll}
 				\noalign{\global\arrayrulewidth=.5\smile@linewidth}
 				\hline
