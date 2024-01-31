@@ -82,7 +82,7 @@ if(y§\j2§ > 10) {
 		\node[t,fit=(L)] (F) {};
 		% \node[label] at (F.south) {Step 1};
 	\end{tikzpicture}\par
-	\paragraph{Step 1} To set everything up, we read in the code, get its abstract
+	\paragraph{Step 1} To set everything up, we retrieve the code, get its abstract
 	syntax tree, normalize it, and finally build and return the dataflow graph. This
 	graph will then be used as a base for the next step.\par
 	\newcolumn
@@ -119,8 +119,8 @@ if(y§\j2§ > 10) {
 		% \node[label] at (F.south) {Step 2};
 	\end{tikzpicture}\par
 	\paragraph{Step 2} In the second step, the actual abstract interpretation happens.
-	This step will gradually decorate the dataflow graph with the domains of the
-	respective variables, by traversing the control flow graph.\par
+	This step gradually decorates the dataflow graph with the domains of the respective
+	variables, by traversing the control flow graph.\par
 	\columnbreak
 	\begin{tikzpicture}
 		\node[n,roundednode] (X1) {\rc{x}\textsubscript1};
@@ -163,7 +163,7 @@ if(y§\j2§ > 10) {
 	% graph.\par
 	\paragraph{Step 3} The last step uses the decorated dataflow graph to determine and
 	track different properties of the original code. We can, e.g., catch endless loops,
-	or, as shown above, ignore dead nodes in the dataflow graph.\par
+	or, as shown above, ignore unreachable nodes in the dataflow graph.\par
 \end{multicols}\bigskip
 \endgroup
 
@@ -171,11 +171,11 @@ if(y§\j2§ > 10) {
 	\newlength\currentparskip\setlength\currentparskip\parskip
 	\begin{minipage}{\dimexpr2\columnwidth+\columnsep\relax}
 		\setlength\parskip\currentparskip%
-		\section*{How abstract interpretation fits into \flowr}
+		\section*{How Abstract Interpretation fits into \flowr}
 		\paragraph{\flowr}\flowr{} is a static \emph{dataflow analyzer} and
 		\emph{program slicer} for the R language. Program slicers reduce a given program
 		to a set of statements --- the so called slices --- that influence a variable at
-		a specific point in the program --- the slicing criterion. \flowr{} formulates
+		a specific point in the program: the slicing criterion. \flowr{} formulates
 		the slicing as a reachability problem on the dataflow graph, which itself is
 		based on the abstract syntax tree of the given R~program.
 		\paragraph{Abstract Interpretation} Abstract interpretation is all about
@@ -184,11 +184,11 @@ if(y§\j2§ > 10) {
 		variable. For now we decided to limit ourselves to determining the \emph{domain
 		of numeric variables}. In other words, we want to know what values a variable
 		can have at a certain point in the program.
-		\paragraph{Abstract interpretation in \flowr} Abstract interpretation helps
+		\paragraph{Abstract Interpretation in \flowr} Abstract interpretation helps
 		\flowr{} to further \emph{narrow down the slice} of a program. This can be done
 		by removing certain paths from the dataflow graph if we can prove that they will
 		never be executed. Imagine a conditional like \rc{if(i < 10) doit() else run()}.
-		If, through abstract interpretation, we know that \rc{i} is always smaller than
+		If, through abstract interpretation, we know that \rc{i}'s value is always less than
 		\rc{10}, there's no need to include the path stemming from the \rc{if}'s
 		else-case in the slice. % TODO: is this okay? Or does it read like we only catch dead code
 		\section*{Abstract Interpretation}
@@ -243,14 +243,14 @@ a; b
 			\begin{tikzpicture}
 				\node[t,minimum height=5cm] (L) {\usebox\tableexampleb};
 			\end{tikzpicture}\par
-			\paragraph{Fig. 2} The computed domain for each variable at every line.
+			\paragraph{Fig. 2} The computed domain for both variables at every line.
 		\end{multicols}\medskip
 		We assume that the integer variables \rc{a} and \rc{b} have both been defined
 		and initialized elsewhere. When entering the snippet shown above, their values
 		are assumed to fall within the domain \intv{a}{0}{200} and
 		\intv{b}{5}{10}.\par
-		We then start by traversing the control flow graph, looking at every piece of
-		code in it. We're especially interested in
+		We then start by traversing the control flow graph in execution order,
+		processing each element of the original program. We're especially interested in
 		\begin{enumerate*}
 			\item operations that change the value of a variable,
 			\item assignments, and
@@ -285,8 +285,8 @@ a; b
 	to JavaScript with Node.js as its runtime. While we use different libraries for
 	utilitarian tasks --- like chai for assertions, mocha for tests, or tslog for
 	logging --- all major functionalities, including abstract interpretation, are
-	implemented \emph{by hand}, as there's a big lack of libraries supporting the R
-	programming language.
+	implemented \emph{by hand}, as there's a big lack of libraries offering these
+	features for the R programming language.
 	\paragraph{QA} To ensure the employment of best practices, we always do \emph{code
 	reviews} on pull requests. This massively helps with keeping the code easy to
 	understand and well readable.\par
@@ -302,13 +302,16 @@ a; b
 		\item a \emph{developer facing} documentation built from inline comments
 	\end{enumerate*}. % TODO more on docs
 	\section*{Future Work}
-	Well, there's still \emph{a lot to do}! We barely support the example shown here and
-	we also don't yet modify the dataflow graph in any way.\par
-	As a first step, we need to implement support for \emph{more control structures} and
-	\emph{operators}. When this is done and basic cases are handled well, we can start
-	\emph{modifying the dataflow graph} and through that, narrow down the slices
-	\flowr{} produces. As a last step, there are many things that can be
+	Well, there's still \emph{a lot to do}! As a first step, we need to implement
+	support for \emph{more control structures}, \emph{operators}, and \emph{function
+	calls}. When this is done and basic cases are handled well, we can start
+	\emph{modifying the dataflow graph} and automatically through that, narrow down the
+	slices \flowr{} produces. As a last step, there are many things that can be
 	\emph{optimized}, like the representation of domains. While this is definitely not
-	mission critical, good performance is always a nice thing to have.
+	mission critical, good performance is always a nice thing to have.\par
+	And all of this is only just the tip of the iceberg. Abstract interpretation allows
+	for way more than just the tracking of value domain. Obvious extensions of this
+	project could include the tracking of domains for different types, or pointer
+	analysis.
 \end{multicols}
 \end{document}
