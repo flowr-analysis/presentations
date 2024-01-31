@@ -46,6 +46,7 @@
 \end{tikzpicture}
 \maketitle
 \makeatletter\tikzset{
+	lw/.style={line width=.5\smile@linewidth},
 	n/.style={minimum width=7mm,minimum height=7mm,shadow},
 	a/.style={arrow,short=1mm},
 	no/.style={opacity=0.3,no shadows},
@@ -57,7 +58,6 @@
 
 \begingroup
 \makeatletter
-\smile@linewidth1px
 \tikzset{node distance=6mm}
 \begin{multicols}{3}
 	\def\i#1{\color{gray!50!black}\textsubscript{#1}}
