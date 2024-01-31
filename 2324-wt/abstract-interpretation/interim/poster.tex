@@ -95,16 +95,6 @@ if(y§\j2§ > 10) {
 
 		\node[n,roundnode,above=of Y1] (Y4) {\rc{y}\textsubscript2};
 
-		\node[dr] at (X1.north east) {\tiny$[10, 10]$};
-		\node[ds] at (X2.north east) {\tiny$[10, 10]$};
-		\node[dr] at (Y1.north east) {\tiny$[15, 15]$};
-		\node[ds] at (Y2.north east) {\tiny$[15, 15]$};
-		\node[ds] at (Y3.north east) {\tiny\tbot};
-		\node[ds] at (Y4.north east) {\tiny$[15, 15]$};
-
-		\node[t,fit=(X1)(X2)(Y1)(Y2)(Y3)(Y4)(C1)(C2)] (F) {};
-		% \node[label] at (F.south) {Step 2};
-
 		\draw[a] (X1) to (X2);
 		\draw[a] (X2) to (Y1);
 		\draw[a] (Y1) to (Y2);
@@ -114,6 +104,16 @@ if(y§\j2§ > 10) {
 		\draw[a] (Y3) to (C2);
 
 		\draw[a] (Y1) to (Y4);
+
+		\node[dr] at (X1.north east) {\tiny$[10, 10]$};
+		\node[ds] at (X2.north east) {\tiny$[10, 10]$};
+		\node[dr] at (Y1.north east) {\tiny$[15, 15]$};
+		\node[ds] at (Y2.north east) {\tiny$[15, 15]$};
+		\node[ds] at (Y3.north east) {\tiny\tbot};
+		\node[ds] at (Y4.north east) {\tiny$[15, 15]$};
+
+		\node[t,fit=(X1)(X2)(Y1)(Y2)(Y3)(Y4)(C1)(C2)] (F) {};
+		% \node[label] at (F.south) {Step 2};
 	\end{tikzpicture}\par
 	\paragraph{Step 2} In the second step, the actual abstract interpretation happens.
 	This step will gradually decorate the dataflow graph with the domains of the
@@ -134,15 +134,6 @@ if(y§\j2§ > 10) {
 
 		\node[n,roundnode,above=of Y1] (Y4) {\rc{y}\textsubscript2};
 
-		\node[dr] at (X1.north east) {\tiny$[10, 10]$};
-		\node[ds] at (X2.north east) {\tiny$[10, 10]$};
-		\node[dr] at (Y1.north east) {\tiny$[15, 15]$};
-		\node[ds] at (Y2.north east) {\tiny$[15, 15]$};
-		\node[ds] at (Y4.north east) {\tiny$[15, 15]$};
-
-		\node[t,fit=(X1)(X2)(Y1)(Y2)(Y3)(Y4)(C1)(C2)] (F) {};
-		% \node[label] at (F.south) {Step 3};
-
 		\draw[a] (X1) to (X2);
 		\draw[a] (X2) to (Y1);
 		\draw[a] (Y1) to (Y2);
@@ -154,6 +145,15 @@ if(y§\j2§ > 10) {
 		\end{scope}
 
 		\draw[a] (Y1) to (Y4);
+
+		\node[dr] at (X1.north east) {\tiny$[10, 10]$};
+		\node[ds] at (X2.north east) {\tiny$[10, 10]$};
+		\node[dr] at (Y1.north east) {\tiny$[15, 15]$};
+		\node[ds] at (Y2.north east) {\tiny$[15, 15]$};
+		\node[ds] at (Y4.north east) {\tiny$[15, 15]$};
+
+		\node[t,fit=(X1)(X2)(Y1)(Y2)(Y3)(Y4)(C1)(C2)] (F) {};
+		% \node[label] at (F.south) {Step 3};
 	\end{tikzpicture}\par
 	% \paragraph{Step 3} The last step uses the decorated dataflow graph to determine wich
 	% path can never be executed. The identified path will then be discarded from the
