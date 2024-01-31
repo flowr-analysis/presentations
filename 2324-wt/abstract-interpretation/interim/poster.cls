@@ -110,11 +110,11 @@
 	\fcolorbox{accent}{accent!10}{%
 		\begin{minipage}[b]{\paperwidth}%
 			\textcolor{accent}{\hrule height \smile@linewidth\relax}
-			\vspace*{0.7ex}%
+			\vspace*{0.9ex}%
 			\hspace\poster@headermargin%
 			\@date\hfill\@institute\hfill\@uni%
 			\hspace\poster@headermargin%
-			\vspace*{0.7ex}%
+			\vspace*{0.9ex}%
 		\end{minipage}
 	}
 	\endgroup%
