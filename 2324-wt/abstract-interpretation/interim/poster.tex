@@ -246,9 +246,9 @@ a; b
 		\end{multicols}\medskip
 		We assume that the integer variables \rc{a} and \rc{b} have both been defined
 		and initialized elsewhere. When entering the snippet shown above, their values
-		are assumed to fall within the domain \intv{a}{0}{200} and
-		\intv{b}{5}{10}. We can read this as follows: \rc{a}'s value will always be
-		greater or equal to $0$, and less than or equal to $200$.\par
+		are assumed to fall within the domain \intv{a}{0}{200} and \intv{b}{5}{10}. We
+		can read this as follows: \rc{a}'s value will always be greater or equal to $0$,
+		and less than or equal to $200$.\par
 		We then start by traversing the control flow graph in execution order,
 		processing each element of the original program. We're especially interested in
 		\begin{enumerate*}
@@ -290,9 +290,10 @@ a; b
 	\paragraph{QA} To ensure the employment of best practices, we always do \emph{code
 	reviews} on pull requests. This massively helps with keeping the code easy to
 	understand and well readable.\par
-	If an error slips through during the review, one of \flowr's extensive suite of over
-	\emph{1000 tests} will probably catch it. Additionally, we consistently introduce
-	new tests promptly whenever there is new code in the project.\par
+	If an error slips through during the review, either \flowr's linter, or its
+	extensive suite of over \emph{1000 tests} will probably catch it. Additionally, we
+	consistently introduce new tests promptly whenever there is new code in the
+	project.\par
 	We also make heavy use of \emph{assertions} --- or how we call them:~guards ---
 	whenever possible to make sure our mental model aligns with the actual execution of
 	the code.
