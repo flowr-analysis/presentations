@@ -1,6 +1,6 @@
 \makeatletter
 \newcommand\input@path{{smile},{flowr-logo}}
-\makeatother
+
 
 \documentclass[color,coloraccent=red!60!black,listings]{poster}
 
@@ -29,7 +29,7 @@
 \makeatletter
 \lstdefinestyle{firastyleb}{style=FiraCodeStyle,style=smile@lst@base}
 \lstdefinestyle{firastylep}{style=FiraCodeStyle,style=smile@lst@plain}
-\makeatother
+
 \lstset{tabsize=4,style=firastyleb}
 
 \def\rc#1{\lstinline[language=r]{#1}}
@@ -54,7 +54,7 @@
 	dr/.style={pill},
 	ds/.style={pill,shift={(1mm,1mm)}},
 	label/.style={line join=round,chamfered rectangle,chamfered rectangle xsep=2pt,lw,inner sep=2pt,draw=black,fill=white},
-}\makeatother
+}
 
 \begingroup
 \makeatletter
@@ -190,7 +190,6 @@ if(y§\j2§ > 10) {
 		\begingroup
 		\lstset{numbers=left,numberblanklines=false,firstnumber=0,style=firastylep,numbers=left,numbersep=5pt}
 		\let\origthelstnumber\thelstnumber
-		\makeatletter
 		\def\nolnnr{\lst@AddToHook{OnNewLine}{\let\thelstnumber\relax\advance\c@lstnumber-\@ne\relax}}
 		\def\yeslnnr#1{%
 			\setcounter{lstnumber}{\numexpr#1-1\relax}
@@ -216,7 +215,7 @@ if (a < 100) {
 		\def\intv#1#2#3{$[#2, #3]$}
 		\newsavebox\tableexampleb
 		\begin{lrbox}\tableexampleb
-			\def\arraystretch{1.1}\def\lnnr#1{\makeatletter{\smile@lst@style@linenr\llap{\color{gray}#1\hspace{2ex}}}\makeatother}
+			\def\arraystretch{1.1}\def\lnnr#1{\makeatletter{\smile@lst@style@linenr\llap{\color{gray}#1\hspace{2ex}}}}
 			\makeatletter\begin{tabular}{ll}
 				\noalign{\global\arrayrulewidth=.5\smile@linewidth}
 				\hline
@@ -227,7 +226,7 @@ if (a < 100) {
 				\lnnr4\intv{a}{101}{201}  & \intv{b}{5}{10} \\
 				\lnnr5\intv{a}{101}{201}  & \intv{b}{7}{12} \\
 				\lnnr6\intv{a}{1}{201}    & \intv{b}{5}{12} \\\hline
-			\end{tabular}\makeatother
+			\end{tabular}
 		\end{lrbox}
 		\begin{multicols}{2}
 			\begin{tikzpicture}
