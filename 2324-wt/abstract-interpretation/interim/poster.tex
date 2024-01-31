@@ -167,7 +167,9 @@ if(y§\j2§ > 10) {
 \endgroup
 
 \begin{multicols}{3}
+	\newlength\currentparskip\setlength\currentparskip\parskip
 	\begin{minipage}{\dimexpr2\columnwidth+\columnsep\relax}
+		\setlength\parskip\currentparskip%
 		\section*{How abstract interpretation fits into \flowr}
 		\paragraph{\flowr}\flowr{} is a static \emph{dataflow analyzer} and
 		\emph{program slicer} for the R language. Program slicers reduce a given program
