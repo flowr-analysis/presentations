@@ -190,8 +190,8 @@ if(y§\j2§ > 10) {
 		can prove that they will never be executed. Imagine a conditional like \rc{if(i
 		< 10) doit() else run()}. If, through abstract interpretation, we know that
 		\rc{i}'s value is always less than \rc{10}, there's no need to include the path
-		stemming from the \rc{if}'s else-case in the slice.
-		\section*{Abstract Interpretation}
+		stemming from the \rc{if}'s else-case in the slice.\bigskip
+		\section*{Abstract Interpretation}\medskip
 		\begingroup
 		\lstset{numbers=left,numberblanklines=false,firstnumber=0,style=firastylep,numbers=left,numbersep=5pt}
 		\let\origthelstnumber\thelstnumber
@@ -244,7 +244,7 @@ a; b
 				\node[t,minimum height=5cm] (L) {\usebox\tableexampleb};
 			\end{tikzpicture}\par
 			\paragraph{Fig. 2} The computed domain for both variables at every line.
-		\end{multicols}\medskip
+		\end{multicols}\bigskip
 		We assume that the integer variables \rc{a} and \rc{b} have both been defined
 		and initialized elsewhere. When entering the snippet shown above, their values
 		are assumed to fall within the domains \intv{a}{0}{200} and \intv{b}{5}{10}. We
