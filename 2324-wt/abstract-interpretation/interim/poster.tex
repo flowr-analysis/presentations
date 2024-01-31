@@ -10,7 +10,7 @@
 \usepackage[verbatim]{lstfiracode}
 \usepackage[notext,nott,nosf,nomath]{kpfonts-otf}
 \usepackage{fancyqr}
-\usepackage{fontawesome}
+\usepackage{pgfpages}
 
 \title{Abstract Interpretation}
 \subtitle{The cooler AI}
@@ -39,11 +39,23 @@
 \def\tbot{{\mathversion{kp}$\bot$}}
 \def\ttop{{\mathversion{kp}$\top$}}
 
+\newsavebox\flowrqrb
 \newsavebox\flowrlogob
 \savebox\flowrlogob{\flowrlogo}
 \def\uselogo#1{\scalebox{#1}{\usebox\flowrlogob}}
 \begin{document}
-\logo{\fancyqr[image=\color{blue!15!black}\huge\faGithub,image padding=1,color=accent!95!black]{https://github.com/Code-Inspect/flowr}}
+\pgfpagesuselayout{resize to}[a1paper]
+\fancyqrset{level=H,height=2cm}
+\begin{lrbox}\flowrqrb
+	\begin{tikzpicture}
+		\node (T) {\scalebox{.8}{\fancyqr[gradient=true,l color=accent!95!black,r color=blue!10!black]{https://github.com/Code-Inspect/flowr}}};
+		\path[postaction={decorate},decoration={text along path, text={|\bfseries|Join us and our},text align={fit to path}}]
+		([shift={(-1.2cm,.2mm)}]T.north) to[bend left=20] ([shift={(1.2cm,.2mm)}]T.north);
+		\path[postaction={decorate},decoration={text along path, text={|\bfseries|flowR-power},text align={fit to path}}]
+		([shift={(-1.2cm,-3mm)}]T.south) to[bend right=20] ([shift={(1.2cm,-3mm)}]T.south);
+	\end{tikzpicture}
+\end{lrbox}
+\logo{\usebox\flowrqrb}
 \tikzset{logo/.append style={fill opacity=0.9}}
 \begin{tikzpicture}[remember picture, overlay]
 	\node[shift={(-18mm,-18mm)},node on layer=background] at (current page.north east) {\uselogo{13}};
