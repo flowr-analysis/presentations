@@ -37,6 +37,7 @@
 \def\rc#1{\lstinline[language=r]{#1}}
 \setmathfont[version=kp]{KpMath}
 \def\tbot{{\mathversion{kp}$\bot$}}
+\def\ttop{{\mathversion{kp}$\top$}}
 
 \newsavebox\flowrlogob
 \savebox\flowrlogob{\flowrlogo}
@@ -244,8 +245,36 @@ a; b
 			\end{tikzpicture}\par
 			\paragraph{Fig. 2} The computed domain for each variable at every line.
 		\end{multicols}\bigskip
+		We assume that the integer variables \rc{a} and \rc{b} have both been defined
+		and initialized elsewhere. When entering the snippet shown above, their values
+		are assumed to be contained in the interval \intv{a}{0}{200} and
+		\intv{b}{5}{10}.\par
+		We then start by traversing the control flow graph, looking at every piece of
+		code in it. But we're especially interested in
+		\begin{enumerate*}
+			\item operations that change the value of a variable,
+			\item assignments, and
+			\item structures that influence the control flow
+		\end{enumerate*}. When encountering an expression of type (1)~--- like addition,
+		subtraction, and other arithmetic operations~--- we merge the operands' domains
+		according to the given operation. We can observe this in line 2, where \rc{a}
+		previously had the domain \intv{a}{0}{99}. Adding \rc1 to \rc{a} resulted in
+		incrementing both the lower and upper bound by \rc1. When we encounter an
+		assignment, we just use the domain of the assignments source expression and map
+		it to the target variable. We can also see this in line 2, where the domain of
+		\rc{a + 1}~--- namely \intv{a}{1}{100}~--- is set as \rc{a}'s new domain.
+		Lastly, if we encounter a structure of type (3), like conditionals or loops, we
+		check how the condition narrows down a variable's domain. In the
+		\rc{if}-\rc{else} above, we can be sure that in the then-case, the condition
+		\rc{a < 100} will always hold, the opposite is true for the else-case. Figure~2
+		shows this in line 1, where \rc{a}'s domain \intv{a}{0}{200} got narrowed down
+		to \intv{a}{0}{99}.\par
+		Besides the domains shown above, we use two special values to indicate two
+		cases. We use \ttop~(top) whenever the domain of a variable is unknown. Or in
+		different words: when the variable could take every possible value. If the
+		opposite is the case --- if a variable can't take any value --- we use \tbot~%
+		(bottom).
 		\endgroup
-		\lipsum[1-2]
 	\end{minipage}\vfill\columnbreak\null\columnbreak
 	\section*{Project Organization}
 	\paragraph{Organization} We're doing \emph{weekly meetings}, where we discuss the
