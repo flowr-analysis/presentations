@@ -176,7 +176,7 @@ if(y§\j2§ > 10) {
 		to a set of statements --- the so called slices --- that influence a variable at
 		a specific point in the program: the slicing criterion. \flowr{} formulates
 		the slicing as a reachability problem on the dataflow graph, which itself is
-		based on the abstract syntax tree of the given R~program.
+		based on the abstract syntax tree of the R~program.
 		\paragraph{Abstract Interpretation} Abstract interpretation is all about
 		figuring out \emph{runtime properties} of a given program without actually
 		executing it. These properties include aspects like the sign or nullness of a
@@ -237,7 +237,7 @@ a; b
 			\begin{tikzpicture}
 				\node[t,minimum height=5cm] (L) {\usebox\codeexampleb};
 			\end{tikzpicture}\par
-			\paragraph{Fig. 1} The code we want to analyze.\par\columnbreak
+			\paragraph{Fig. 1} The source code we want to analyze.\par\columnbreak
 			\begin{tikzpicture}
 				\node[t,minimum height=5cm] (L) {\usebox\tableexampleb};
 			\end{tikzpicture}\par
@@ -245,7 +245,7 @@ a; b
 		\end{multicols}\medskip
 		We assume that the integer variables \rc{a} and \rc{b} have both been defined
 		and initialized elsewhere. When entering the snippet shown above, their values
-		are assumed to fall within the domain \intv{a}{0}{200} and \intv{b}{5}{10}. We
+		are assumed to fall within the domains \intv{a}{0}{200} and \intv{b}{5}{10}. We
 		can read this as follows: \rc{a}'s value will always be greater or equal to $0$,
 		and less than or equal to $200$.\par
 		We then start by traversing the control flow graph in execution order,
@@ -254,20 +254,22 @@ a; b
 			\item operations that change the value of a variable,
 			\item assignments, and
 			\item structures that influence the control flow
-		\end{enumerate*}. When encountering an expression of type (1)~--- like addition,
-		subtraction, and other arithmetic operations~--- we merge the operands' domains
+		\end{enumerate*}. When encountering an expression of type (1), like addition,
+		subtraction, and other arithmetic operations, we merge the operands' domains
 		according to the given operation. We can observe this in line 2, where \rc{a}'s
-		value was previously determined to be between $0$ and $99$. Adding \rc1 to
-		\rc{a} modified its domain by incrementing both the lower and upper bound to $1$
-		and $100$. When we encounter an assignment, we use the domain of the assignments
+		value was previously determined to be between $0$ and $99$. Adding $1$ to \rc{a}
+		modified its domain by incrementing both the lower and upper bound to $1$ and
+		$100$. When we encounter an assignment, we use the domain of the assignments
 		source expression and map it to the target variable. We can also see this in
 		line 2, where the domain of \rc{a + 1}~--- namely \intv{a}{1}{100}~--- is set as
 		\rc{a}'s new domain. Lastly, if we encounter a structure of type (3), like
 		conditionals or loops, we check how the condition narrows down a variable's
-		domain. In the \rc{if}-\rc{else} above, we can be sure that in the then-case,
-		the condition \rc{a < 100} will always hold, the opposite is true for the
-		else-case. Figure~2 shows this in line 1, where \rc{a}'s domain \intv{a}{0}{200}
-		got narrowed down to \intv{a}{0}{99}.\par
+		domain. In the \rc{if}-\rc{else} above, it is evident that the condition \rc{a <
+		100} will always hold in the \rc{if}'s then-case, while conversely, it does not
+		hold in its else-case. In example above, we can use this fact to lower the
+		domains upper bound to the conditions upper bound --- namely $99$. Figure~2
+		shows this in line 1, where \rc{a}'s domain \intv{a}{0}{200} got narrowed down
+		to \intv{a}{0}{99}.\par
 		Besides the domains shown above, we use two special values to indicate two
 		cases. We use \ttop~(top) whenever the domain of a variable is unknown. Or in
 		different words: when the variable could take every possible value. If the
