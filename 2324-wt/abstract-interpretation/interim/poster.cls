@@ -98,7 +98,7 @@
 		\large\@author\par%
 	\end{minipage}}\usebox\poster@titletextb\setlength{\poster@titleheight}{\ht\poster@titletextb + \dp\poster@titletextb}%
 	\begin{tikzpicture}[overlay, remember picture]
-		\node[node on layer=foreground,anchor=north east,minimum width=.75\poster@titleheight,minimum height=\poster@titleheight,outer sep=\z@,shift={(-\poster@headermargin,\smile@rounding)},logo] at (current page.north east) {\includegraphics[width=1.8cm]{\@logo}};
+		\node[node on layer=foreground,anchor=north east,minimum width=.75\poster@titleheight,minimum height=\poster@titleheight,outer sep=\z@,shift={(-\poster@headermargin,\smile@rounding)},logo] at (current page.north east) {\@logo};
 	\end{tikzpicture}\vspace{1cm}
 	\endgroup%
 }
