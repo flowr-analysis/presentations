@@ -85,7 +85,7 @@
 \newlength\poster@titleheight
 \tikzset{
 	pipelinestep/.style={lw,rnd,shape=signal,signal from=west,signal pointer angle=130,minimum width=3cm,minimum height=2cm,draw=black,fill=lightgray!50!white},
-	logo/.style={signal,signal to=nowhere,signal pointer angle=110,signal from=south,lw,rnd,draw=accent,fill=accent!70!white!20}
+	logo/.style={signal,signal to=nowhere,signal pointer angle=115,signal from=south,lw,rnd,draw=accent,fill=accent!70!white!20}
 }
 \renewcommand\maketitle{%
 	\begingroup\hspace{-\poster@textmargin}\hspace\poster@headermargin%
