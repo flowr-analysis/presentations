@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.11.15)  31 JAN 2024 12:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.11.15)  2 JUL 2024 20:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1432,40 +1432,45 @@ le
 line 27.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/bold/n' will be
 (Font)              scaled to size 14.4pt on input line 27.
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--31
+
+ []
+
 <./Bilder//Screenshot 2024-01-26 131317.png, id=7, 180.34042pt x 172.645pt>
 File: ./Bilder//Screenshot 2024-01-26 131317.png Graphic file (type png)
 <use ./Bilder//Screenshot 2024-01-26 131317.png>
 Package pdftex.def Info: ./Bilder//Screenshot 2024-01-26 131317.png  used on in
-put line 48.
+put line 45.
 (pdftex.def)             Requested size: 162.30486pt x 155.37904pt.
 
-Overfull \hbox (16.05992pt too wide) in paragraph at lines 48--49
+Overfull \hbox (16.05992pt too wide) in paragraph at lines 45--46
 [][] 
  []
 
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/n' in size <9> not available
 (Font)              Font shape `T1/FiraSans-OsF/regular/n' tried instead on inp
-ut line 49.
+ut line 46.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/n' will be
-(Font)              scaled to size 9.0pt on input line 49.
+(Font)              scaled to size 9.0pt on input line 46.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/m/n' in size <8> not available
 (Font)              Font shape `T1/FiraSans-OsF/regular/n' tried instead on inp
-ut line 49.
+ut line 46.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/regular/n' will be
-(Font)              scaled to size 8.0pt on input line 49.
+(Font)              scaled to size 8.0pt on input line 46.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/b/n' in size <8> not available
 (Font)              Font shape `T1/FiraSans-OsF/bold/n' tried instead on input 
-line 49.
+line 46.
 LaTeX Font Info:    Font shape `T1/FiraSans-OsF/bold/n' will be
-(Font)              scaled to size 8.0pt on input line 49.
+(Font)              scaled to size 8.0pt on input line 46.
 <./Bilder//Screenshot 2024-01-30 142858.png, id=9, 226.17833pt x 182.01334pt>
 File: ./Bilder//Screenshot 2024-01-30 142858.png Graphic file (type png)
 <use ./Bilder//Screenshot 2024-01-30 142858.png>
 Package pdftex.def Info: ./Bilder//Screenshot 2024-01-30 142858.png  used on in
-put line 53.
+put line 50.
 (pdftex.def)             Requested size: 158.32373pt x 127.40845pt.
 
-Overfull \hbox (12.0788pt too wide) in paragraph at lines 53--54
+Overfull \hbox (12.0788pt too wide) in paragraph at lines 50--51
 [][] 
  []
 
@@ -1473,11 +1478,16 @@ Overfull \hbox (12.0788pt too wide) in paragraph at lines 53--54
 File: ./Bilder//Screenshot 2024-01-26 132150.png Graphic file (type png)
 <use ./Bilder//Screenshot 2024-01-26 132150.png>
 Package pdftex.def Info: ./Bilder//Screenshot 2024-01-26 132150.png  used on in
-put line 58.
+put line 55.
 (pdftex.def)             Requested size: 153.4054pt x 65.10945pt.
 
-Overfull \hbox (7.16046pt too wide) in paragraph at lines 58--59
+Overfull \hbox (7.16046pt too wide) in paragraph at lines 55--56
 [][] 
+ []
+
+
+Underfull \hbox (badness 6173) in paragraph at lines 69--71
+\T1/FiraSans-OsF/regular/n/10 struc-tion im-ple-men-ta-tion. This
  []
 
 
@@ -1510,7 +1520,7 @@ Package logreq Info: Writing requests to 'example.run.xml'.
 Here is how much of TeX's memory you used:
  32567 strings out of 479485
  640521 string characters out of 5875915
- 1602136 words of memory out of 5000000
+ 1601136 words of memory out of 5000000
  49018 multiletter control sequences out of 15000+600000
  699313 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1520,7 +1530,7 @@ Here is how much of TeX's memory you used:
 fonts/type1/public/fira/FiraSans-Bold.pfb><c:/texlive/2020/texmf-dist/fonts/typ
 e1/public/fira/FiraSans-Regular.pfb><c:/texlive/2020/texmf-dist/fonts/type1/pub
 lic/sansmathfonts/ssmsam10.pfb>
-Output written on example.pdf (1 page, 165947 bytes).
+Output written on example.pdf (1 page, 165414 bytes).
 PDF statistics:
  41 PDF objects out of 1000 (max. 8388607)
  28 compressed objects within 1 object stream
