@@ -11,7 +11,7 @@
 % \definecolor{c}{HTML}{1a3555} % blue
 % \definecolor{c}{HTML}{2f222d} % lila
 % \definecolor{c}{HTML}{2e4039} % green
-\usetheme[english,color,coloraccent=c,secslide,tikz]{awesome}
+\usetheme[english,notoc,color,coloraccent=c,secslide,tikz]{awesome}
 
 \usepackage[sfdefault]{FiraSans}
 \usepackage{contour}
@@ -41,9 +41,9 @@
 
 \maketitle
 
-\begin{frame}[wide]
+\begin{frame}
 	\frametitle{Architecture}
-	\begin{wide}
+	\begin{wide}\begin{center}
 	\begin{tikzpicture}[node distance=1.4cm]
 		\node[roundednode] (core) {Package Core};
 		\node[roundednode,right=of core] (covr) {\covr};
@@ -83,7 +83,7 @@
 
 		\node[xshift=0mm] at (core.north west) {\ghuser{lukas}};
 	\end{tikzpicture}
-	\end{wide}
+	\end{center}\end{wide}
 \end{frame}
 
 \end{document}
