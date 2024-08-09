@@ -1,0 +1,87 @@
+\documentclass[aspectratio=169]{beamer}
+
+\makeatletter
+\appto\input@path{{pkgs/awesome-beamer},{pkgs/smile}}
+\makeatother
+\graphicspath{{assets/profilepics}}
+
+% \definecolor{c}{HTML}{3e2723} % brown
+\definecolor{c}{HTML}{6a393b} % red
+% \definecolor{c}{HTML}{854442} % light red
+% \definecolor{c}{HTML}{1a3555} % blue
+% \definecolor{c}{HTML}{2f222d} % lila
+% \definecolor{c}{HTML}{2e4039} % green
+\usetheme[english,notoc,color,coloraccent=c,secslide,tikz]{awesome}
+
+\usepackage[sfdefault]{FiraSans}
+
+\usepackage[duration=20,defaulttransition=fade]{pdfpc}
+\newcommand<>{\talknote}[1]{\only#2{\pdfpcnote{- #1}\relax}}
+
+\title{Slicing Coverage}
+\subtitle{Warum heißt flowr eigentlich nicht Nicer Slicer?}
+\author{Lukas Pietzschmann}
+\email{lukas.pietzschmann@uni-ulm.de}
+\institute{Institute of Software Engineering and Programming Languages}
+\uni{Ulm University}
+\location{Ulm}
+\date\today
+
+\def\flowr{\emph{flowr}}
+\def\covr{\emph{covr}}
+\makeatletter
+\newcommand\ghuser[2][2.5mm]{\begin{tikzpicture}\tikzset{c/.style={roundnode,inner sep=0,outer sep=0,##1}}
+	\node[c=black,minimum width=#1+\smile@linewidth,shadow] at (0,0) {};
+	\clip (0,0) circle (#1/2);
+	\node at (0,0) {\includegraphics[width=#1]{#2.jpeg}};
+\end{tikzpicture}}\makeatother
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}
+	\frametitle{Architecture}
+	\begin{wide}\begin{center}
+	\begin{tikzpicture}[node distance=1.4cm]
+		\node[roundednode] (core) {Package Core};
+		\node[roundednode,right=of core] (covr) {\covr};
+		\node[roundednode,left=of core] (adap) {\flowr{} Adapter};
+		\node[roundednode,left=of adap] (flowr) {\flowr};
+		\node[roundednode,node on layer=background,dashed,lcr,inner sep=3mm,fill=lightgray!30,fit=(adap)(core)(covr)] (pkg) {};
+		\node[roundednode,below=of pkg,shift={(-2cm,5mm)}] (in) {Input Files};
+		\node[roundednode,below=of pkg,shift={(2cm,5mm)}] (out) {Coverage Report};
+
+		\coordinate (M) at ($(flowr.east)!0.5!(adap.west)$);
+		\draw[lightgray,dashed,lw,lcr] ([yshift=1.3cm]M) -- (in.south-|M);
+
+		\begin{scope}[short=1mm]
+			\draw[arrow] (in)               to                node(1){} (pkg);
+			\draw[arrow] (core.north west)  to[bend right=10] node(2){} (adap.north east);
+			\draw[arrow] (adap.north west)  to[bend right=10] node(3){} (flowr.north east);
+			\draw[arrow] (flowr.south east) to[bend right=10] node(4){} (adap.south west);
+			\draw[arrow] (adap.south east)  to[bend right=10] node(5){} (core.south west);
+			\draw[arrow] (core.south east)  to[bend right=10] node(6){} (covr.south west);
+			\draw[arrow] (covr.north west)  to[bend right=10] node(7){} (core.north east);
+			\draw[arrow] (pkg)              to                node(8){} (out);
+		\end{scope}
+
+		\foreach \x in {1,3,4,8}\node[circle,font=\tiny,fill=white,inner sep=.5pt] at (\x) {\x};
+		\foreach \x in {2,5,6,7}\node[circle,font=\tiny,fill=lightgray!30,inner sep=.5pt] at (\x) {\x};
+
+
+		\node[xshift=0mm] at (flowr.north west) {\ghuser{ehcsan}};
+		\node[xshift=2mm] at (flowr.north west) {\ghuser{core5563}};
+		\node[xshift=4mm] at (flowr.north west) {\ghuser{benedikt}};
+		\node[xshift=6mm] at (flowr.north west) {\ghuser{julian}};
+		\node[xshift=8mm] at (flowr.north west) {\ghuser{florian}};
+
+		\node[xshift=0mm] at (adap.north west) {\ghuser{lukas}};
+		\node[xshift=2mm] at (adap.north west) {\ghuser{julian}};
+
+		\node[xshift=0mm] at (core.north west) {\ghuser{lukas}};
+	\end{tikzpicture}
+	\end{center}\end{wide}
+\end{frame}
+
+\end{document}
