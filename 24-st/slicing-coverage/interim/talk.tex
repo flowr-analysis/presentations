@@ -1,0 +1,33 @@
+\documentclass[aspectratio=169]{beamer}
+
+\makeatletter
+\appto\input@path{{pkgs/awesome-beamer},{pkgs/smile}}
+\makeatother
+
+% \definecolor{c}{HTML}{3e2723} % brown
+\definecolor{c}{HTML}{6a393b} % red
+% \definecolor{c}{HTML}{854442} % light red
+% \definecolor{c}{HTML}{1a3555} % blue
+% \definecolor{c}{HTML}{2f222d} % lila
+% \definecolor{c}{HTML}{2e4039} % green
+\usetheme[english,color,coloraccent=c,secslide,tikz]{awesome}
+
+\usepackage[sfdefault]{FiraSans}
+
+\usepackage[duration=20,defaulttransition=fade]{pdfpc}
+\newcommand<>{\talknote}[1]{\only#2{\pdfpcnote{- #1}\relax}}
+
+\title{Slicing Coverage}
+\subtitle{Warum heißt flowr eigentlich nicht Nicer Slicer?}
+\author{Lukas Pietzschmann}
+\email{lukas.pietzschmann@uni-ulm.de}
+\institute{Institute of Software Engineering and Programming Languages}
+\uni{Ulm University}
+\location{Ulm}
+\date\today
+
+\begin{document}
+
+\maketitle
+
+\end{document}
