@@ -4,3 +4,9 @@
 [submodule "2324-wt/abstract-interpretation/interim/flowr-logo"]
 	path = 2324-wt/abstract-interpretation/interim/flowr-logo
 	url = git@github.com:EagleoutIce/flowr-logo.git
+[submodule "24-st/slicing-coverage/interim/pkgs/awesome-beamer"]
+	path = 24-st/slicing-coverage/interim/pkgs/awesome-beamer
+	url = git@github.com:LukasPietzschmann/awesome-beamer.git
+[submodule "24-st/slicing-coverage/interim/pkgs/smile"]
+	path = 24-st/slicing-coverage/interim/pkgs/smile
+	url = git@github.com:LukasPietzschmann/smile.git

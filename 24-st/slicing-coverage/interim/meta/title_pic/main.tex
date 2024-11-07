@@ -1,0 +1,44 @@
+\documentclass[tikz]{standalone}
+% \documentclass[tikz,border={10cm 0}]{standalone}
+
+\usepackage[color,coloraccent=blue,tikz]{../../pkgs/smile/smile}
+
+\makeatletter\smile@rounding.5mm\makeatother
+
+\tikzset{
+	line/.style={roundednode,fill=gray,draw=gray,minimum height=2mm,minimum width=#1mm,anchor=west},
+	cov/.style={fill=red!10!gray,draw=red!10!gray},
+	slc/.style={draw=red!30!darkgray},
+	lnnr/.style={roundednode,fill=lightgray,draw=none,inner sep=.5mm}
+}
+
+\newcounter{lnctr}
+\newcounter{ind}
+\newcounter{sgx}[lnctr]
+
+\def\ln#1{\stepcounter{lnctr}\setcounter{ind}{#1}}
+\def\sg#1#2{\edef\y{\value{lnctr}}\edef\x{\value{ind}}\edef\xx{\value{sgx}}
+	\node[line=#1,#2,xshift=\x*1cm+\xx*1mm,yshift=\y*-3.5mm] {};
+	\addtocounter{sgx}{\numexpr#1+1\relax}
+}
+
+\begin{document}
+	\begin{tikzpicture}
+		\ln0\sg{30}{cov}\sg{10}{cov}
+		\ln0\sg{10}{cov,slc}\sg{5}{cov,slc}\sg{30}{cov,slc}
+		\ln1\sg{20}{cov}\sg{5}{cov}\sg{20}{cov}
+		\ln1\sg{05}{cov,slc}\sg{15}{cov,slc}
+		\ln2\sg{10}{cov,slc}\sg{5}{cov,slc}
+		\ln1\sg{10}{}
+		\ln2\sg{10}{cov,slc}\sg{30}{cov,slc}
+		\ln0\sg{02}{}
+
+		\addtocounter{lnctr}{2}
+
+		\ln0\sg{50}{}
+		\ln1\sg{30}{}
+		\ln0\sg{02}{}
+
+		\foreach \y in {1,...,\value{lnctr}} \node[lnnr] (lnnr\y) at (-3mm,\y*-3.5mm) {};
+	\end{tikzpicture}
+\end{document}
